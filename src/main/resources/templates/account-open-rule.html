@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form th:object="${account}" method="post">
+        <div class="grid">
+            <div class="account-type-group" id="account-type">
+                <h3>Checkcing account currencies:</h3>
+                <div th:each="transactions : ${checking}">                    
+                    <span th:text="${transactions.currency}">INGREDIENT</span><br/>
+                    <span th:text="${transactions.minBalance}">INGREDIENT</span><br/>
+                    <span th:text="${transactions.interestRate}">INGREDIENT</span><br/>
+                </div>
+            </div>
+            <div class="account-type-group" id="account-type-2">
+                <h3>Saving account currencies:</h3>
+                <div th:each="transactions : ${saving}">                    
+                    <span th:text="${transactions.currency}">INGREDIENT</span><br/>
+                    <span th:text="${transactions.minBalance}">INGREDIENT</span><br/>
+                    <span th:text="${transactions.interestRate}">INGREDIENT</span><br/>
+                </div>
+            </div>
+            size: <span th:text="${#lists.size(account.transactions.size)}"/>
+        </div>
+    </form>
+</body>
+</html>

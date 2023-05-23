@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{admin/shared/layout.html}">
+<head>  
+  <title>Transactions</title>
+</head>
+<body>
+  <div layout:fragment="breadcrumb">
+    <li class="breadcrumb-item">
+      <a th:href="@{/admin}">Home</a>
+    </li>
+    <li class="breadcrumb-item active"><span>Transactions</span></li>
+  </div>
+
+  <div layout:fragment="content">
+    <div class="table-responsive">
+      <table class="table border mb-0">
+        <thead class="table-light fw-semibold">
+          <tr class="align-middle">
+            <th class="text-center">Transaction ID</th>
+            <th class="text-center">Amount</th>
+            <th class="text-center">Operation</th>
+            <th class="text-center">Status</th>
+            <th class="text-center">Type</th>
+            <th class="text-center">Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="transaction : ${transactions}" class="align-middle">
+            <td class="text-center">
+              <span th:text="${transaction.transactionId}"></span>
+            </td>
+            <td class="text-center">
+              <span th:text="${transaction.amount}"></span>
+            </td>
+            <td class="text-center">
+              <span th:text="${transaction.operation}"></span>
+            </td>
+            <td class="text-center">
+              <span th:text="${transaction.status}"></span>
+            </td>
+            <td class="text-center">
+              <span th:text="${transaction.type}"></span>
+            </td>
+            <td class="text-center">
+              <span th:text="${transaction.transactionDate}"></span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+</body>
+</html>

@@ -1,0 +1,17 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/atm
+    generate-unique-name: false
+    name: atm
+    username: root
+    password: Pass@word
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate.ddl-auto: create
+    show-sql: true
+    open-in-view: false
+  thymeleaf:
+    cache: false
+server: 
+  error: 
+    include-stacktrace: always

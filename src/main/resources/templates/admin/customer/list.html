@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{admin/shared/layout.html}">
+
+<head>
+  <title>Customers</title>
+</head>
+
+<body>
+
+  <div layout:fragment="breadcrumb">
+    <li class="breadcrumb-item">
+      <a th:href="@{/admin}">Home</a>
+    </li>
+    <li class="breadcrumb-item active"><span>Customers</span></li>
+  </div>
+
+  <div layout:fragment="content">
+    <div class="row">
+      <div class="col">
+        <a th:href="@{/admin/customer/create}" class="btn btn-success m-1">Create Customer</a>
+      </div>
+    </div>
+    <div class="table-responsive">
+      <table class="table border mb-0">
+        <thead class="table-light fw-semibold">
+          <tr class="align-middle">
+            <th class="text-center">
+              <svg class="icon">
+                <use th:href="@{/as/vendors/@coreui/icons/svg/free.svg#cil-people}"></use>
+              </svg>
+            </th>
+            <th>Customer</th>
+            <th class="text-center">Country</th>
+            <th class="text-center">Gender</th>
+            <th class="text-center">Contacts</th>
+            <th class="text-center">Doc Type</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="customer : ${customers}" class="align-middle">
+            <td class="text-center">
+              <div class="avatar avatar-md">
+                <img class="avatar-img" th:src="@{/as/assets/img/avatars/0.png}" alt="user@email.com">
+                <span class="avatar-status bg-success"></span>
+              </div>
+            </td>
+            <td>
+              <div th:text="${customer.firstName + ' ' + customer.lastName}">Yiorgos Avraamu</div>
+              <div class="small text-medium-emphasis" th:text="${'Birthdate: ' + customer.birthDate}">Birthdate: Jan 1,
+                2020</div>
+            </td>
+            <td class="text-center">
+              <span th:text="${customer.stateIsoCode}"></span>
+            </td>
+            <td class="text-center">
+              <span th:text="${customer.sex}"></span>
+            </td>
+            <td class="text-center">
+              <a th:href="${'tel:+7' + customer.phoneNumber}" th:text="${'+7' + customer.phoneNumber}"></a>
+              <br>
+              <a th:href="${'mailto:' + customer.email}" class="small" th:text="${customer.email}"></a>
+            </td>
+            <td>
+              <div class="text-muted small text-center" th:text="${customer.docType}">10 sec ago</div>
+            </td>
+            <td>
+              <div class="dropdown">
+                <button class="btn btn-transparent p-0" type="button" data-coreui-toggle="dropdown" aria-haspopup="true"
+                  aria-expanded="false">
+                  <svg class="icon">
+                    <use th:href="@{/as/vendors/@coreui/icons/svg/free.svg#cil-options}"></use>
+                  </svg>
+                </button>
+                <div class="dropdown-menu dropdown-menu-end">
+                  <a class="dropdown-item" th:href="@{/admin/customer/{id}(id=${customer.id})}">Info</a>
+                  <a class="dropdown-item" th:href="@{/admin/customer/edit/{id}(id=${customer.id})}">Edit</a>
+                  <button class="dropdown-item text-danger" data-coreui-toggle="modal" data-coreui-target="#deleteModal" th:attr="data-coreui-customerId=${customer.id}">Delete</button>                              
+                </div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="deleteModalLabel">Are you sure?</h5>
+            <button type="button" class="btn-close" data-coreui-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form class="deleteForm" method="post" action="#">
+              <button type="submit" class="btn btn-danger">Yes</a>
+              <button type="button" data-coreui-dismiss="modal" class="btn btn-secondary">No</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script layout:fragment="scripts">
+    const exampleModal = document.getElementById('deleteModal')
+    exampleModal.addEventListener('show.coreui.modal', event => {
+      const button = event.relatedTarget
+      const customerId = button.getAttribute('data-coreui-customerId')
+      const deleteForm = exampleModal.querySelector('.deleteForm')
+      deleteForm.action = `/admin/customer/delete/${customerId}`;
+    })
+  </script>
+</body>
+
+</html>

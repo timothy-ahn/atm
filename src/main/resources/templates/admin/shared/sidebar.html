@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<body>
+  <div class="sidebar sidebar-dark sidebar-fixed" id="sidebar" th:fragment="sidebar">
+    <div class="sidebar-brand d-none d-md-flex">
+      <svg class="sidebar-brand-full" width="118" height="46" alt="CoreUI Logo">
+        <use th:href="@{/as/assets/brand/coreui.svg#full}"></use>
+      </svg>
+      <svg class="sidebar-brand-narrow" width="46" height="46" alt="CoreUI Logo">
+        <use th:href="@{/as/assets/brand/coreui.svg#signet}"></use>
+      </svg>
+    </div>
+    <ul class="sidebar-nav" data-coreui="navigation" data-simplebar="">
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/admin}">
+          <svg class="nav-icon">
+            <use th:href="@{/as/vendors/@coreui/icons/svg/free.svg#cil-speedometer}"></use>
+          </svg> 
+          Dashboard
+        </a>
+      </li>
+      <li class="nav-title">Customers</li>
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/admin/customer}">
+          <svg class="nav-icon">
+            <use th:href="@{/as/vendors/@coreui/icons/svg/free.svg#cil-user}"></use>
+          </svg> 
+          Customers
+        </a>
+      </li>
+      <li class="nav-title">Accounts</li>
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/admin/account}">
+          <svg class="nav-icon">
+            <use th:href="@{/as/vendors/@coreui/icons/svg/free.svg#cil-bank}"></use>
+          </svg> 
+          Accounts
+        </a>
+        <a class="nav-link" th:href="@{/admin/account-plan}">
+          <svg class="nav-icon">
+            <use th:href="@{/as/vendors/@coreui/icons/svg/free.svg#cil-description}"></use>
+          </svg> 
+          Account Plans
+        </a>
+      </li>
+      <li class="nav-title">Transactions</li>
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/admin/transaction}">
+          <svg class="nav-icon">
+            <use th:href="@{/as/vendors/@coreui/icons/svg/free.svg#cil-transfer}"></use>
+          </svg> 
+          Transactions
+        </a>
+      </li>      
+    </ul>
+    <button class="sidebar-toggler" type="button" data-coreui-toggle="unfoldable"></button>
+  </div>
+</body>
+
+</html>

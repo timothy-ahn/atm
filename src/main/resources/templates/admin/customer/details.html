@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{admin/shared/layout.html}">
+
+<head>
+  <title>Customer Details</title>
+</head>
+
+<body>
+
+  <div layout:fragment="breadcrumb">
+    <li class="breadcrumb-item">
+      <a th:href="@{/admin}">Home</a>
+    </li>
+    <li class="breadcrumb-item">
+      <a th:href="@{/admin/customer}">Customers</a>
+    </li>
+    <li class="breadcrumb-item active">
+      <span>Details</span>
+    </li>
+  </div>
+
+  <div layout:fragment="content">
+    <div class="row">
+      <div class="col-12">
+        <div class="card mb-4">
+          <div class="card-header"><strong>Actons</strong></div>
+          <div class="card-body">
+            <a class="btn btn-warning" th:href="@{/admin/customer/edit/{id}(id=${customer.id})}">
+              <svg class="icon me-2">
+                <use th:href="@{/as/vendors/@coreui/icons/svg/free.svg#cil-pencil}"></use>
+              </svg>Edit
+            </a>
+            <a class="btn btn-danger" th:href="@{/admin/customer/delete/{id}(id=${customer.id})}">
+              <svg class="icon me-2">
+                <use th:href="@{/as/vendors/@coreui/icons/svg/free.svg#cil-trash}"></use>
+              </svg>Delete
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="col-7">
+        <div class="card mb-4">
+          <div class="card-header"><strong>Customer Details</strong><span class="small ms-1"
+              th:text="${'ID: ' + customer.id}">ID: 1</span></div>
+          <div class="card-body">
+            <form class="row g-3" th:object="${customer}">
+              <div class="col-md-4">
+                <label class="form-label" for="firstName">First Name</label>
+                <input class="form-control" disabled th:field="*{firstName}">
+              </div>
+              <div class="col-md-4">
+                <label class="form-label" for="middleName">Middle Name</label>
+                <input class="form-control" disabled th:field="*{middleName}">
+              </div>
+              <div class="col-md-4">
+                <label class="form-label" for="lastName">Last Name</label>
+                <input class="form-control" disabled th:field="*{lastName}">
+              </div>
+              <div class="col-md-4">
+                <label class="form-label" for="sex">Sex</label>
+                <input class="form-control" disabled th:field="*{sex}">
+              </div>
+              <div class="col-md-4">
+                <label class="form-label" for="birthDate">Birthdate</label>
+                <input class="form-control" disabled th:field="*{birthDate}">
+              </div>
+              <div class="col-md-4">
+                <label class="form-label" for="citizenship">Citizenship</label>
+                <input class="form-control" disabled th:field="*{citizenship}">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="email">Email</label>
+                <input class="form-control" disabled th:field="*{email}">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="phoneNumber">Phone</label>
+                <input class="form-control" disabled th:field="*{phoneNumber}">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="docType">Doc Type</label>
+                <input class="form-control" disabled th:field="*{docType}">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="docNum">Doc Num.</label>
+                <input class="form-control" disabled th:field="*{docNum}">
+              </div>
+              <div class="col-md-4">
+                <label class="form-label" for="docIssueDate">Doc Issue Date</label>
+                <input class="form-control" disabled th:field="*{docIssueDate}">
+              </div>
+              <div class="col-md-4">
+                <label class="form-label" for="docExpiryDate">Doc Expiry Date</label>
+                <input class="form-control" disabled th:field="*{docExpiryDate}">
+              </div>
+              <div class="col-md-4">
+                <label class="form-label" for="stateIsoCode">State ISO</label>
+                <input class="form-control" disabled th:field="*{stateIsoCode}">
+              </div>
+              <div class="col-12">
+                <label class="form-label" for="docIssuer">Doc Issuer</label>
+                <input class="form-control" disabled th:field="*{docIssuer}">
+              </div>
+              <div class="col-12">
+                <label class="form-label" for="residenceAddress">Residence Address</label>
+                <input class="form-control" disabled th:field="*{residenceAddress}">
+              </div>
+              <div class="col-12">
+                <label class="form-label" for="actualAddress">Actual Address</label>
+                <input class="form-control" disabled th:field="*{actualAddress}">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="createdAt">Created</label>
+                <input class="form-control" disabled th:field="*{createdAt}">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="updatedAt">Updated</label>
+                <input class="form-control" disabled th:field="*{updatedAt}">
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="col-5">
+        <div class="card mb-4">
+          <div class="card-header"><strong>Accounts</strong></div>
+          <div class="card-body">
+            <div class="input-group mb-3" th:each="account : ${customer.accounts}">
+              <span class="input-group-text" th:if="${account.currency == 'KZT'}">₸</span>
+              <span class="input-group-text" th:if="${account.currency == 'USD'}">$</span>
+              <span class="input-group-text" th:if="${account.currency == 'EUR'}">€</span>
+              <input readonly type="text" class="form-control" th:value="${account.iban}">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+</body>
+
+</html>

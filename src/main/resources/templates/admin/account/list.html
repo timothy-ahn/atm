@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{admin/shared/layout.html}">
+<head>  
+  <title>Accounts</title>
+</head>
+<body>
+  <div layout:fragment="breadcrumb">
+    <li class="breadcrumb-item">
+      <a th:href="@{/admin}">Home</a>
+    </li>
+    <li class="breadcrumb-item active"><span>Accounts</span></li>
+  </div>
+
+  <div layout:fragment="content">
+    <div class="table-responsive">
+      <table class="table border mb-0">
+        <thead class="table-light fw-semibold">
+          <tr class="align-middle">
+            <th class="text-center">Account ID</th>
+            <th class="text-center">Customer</th>
+            <th class="text-center">IBAN</th>
+            <th class="text-center">Currency</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="account : ${accounts}" class="align-middle">
+            <td class="text-center">
+              <span th:text="${account.id}"></span>
+            </td>
+            <td>
+              <div th:text="${account.customer.firstName + ' ' + account.customer.lastName}">Yiorgos Avraamu</div>
+            </td>
+            <td class="text-center">
+              <span th:text="${account.iban}"></span>
+            </td>
+            <td class="text-center">
+              <span th:text="${account.currency}"></span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+</body>
+</html>

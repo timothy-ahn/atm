@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{admin/shared/layout.html}">
+
+<head>
+  <title>Customer Edit</title>
+</head>
+
+<body>
+
+  <div layout:fragment="breadcrumb">
+    <li class="breadcrumb-item">
+      <a th:href="@{/admin}">Home</a>
+    </li>
+    <li class="breadcrumb-item">
+      <a th:href="@{/admin/customer}">Customers</a>
+    </li>
+    <li class="breadcrumb-item active">
+      <span>Edit</span>
+    </li>
+  </div>
+
+  <div layout:fragment="content">
+    <div class="row">
+      <div class="col-7">
+        <div class="card mb-4">
+          <div class="card-header"><strong>Customer Details</strong><span class="small ms-1"
+              th:text="${'ID: ' + customer.id}">ID: 1</span></div>
+          <div class="card-body">
+            <form class="row g-3" th:action="@{/admin/customer/edit}" th:object="${customer}" method="post">
+              <input type="hidden" th:field="*{id}">
+              <div class="col-md-4">
+                <label class="form-label" for="firstName">First Name</label>
+                <input class="form-control" th:field="*{firstName}" th:errorClass="is-invalid">
+                <span class="invalid-feedback" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></span>
+              </div>
+              <div class="col-md-4">
+                <label class="form-label" for="middleName">Middle Name</label>
+                <input class="form-control" th:field="*{middleName}" th:errorClass="is-invalid">
+                <span class="invalid-feedback" th:if="${#fields.hasErrors('middleName')}" th:errors="*{middleName}"></span>
+              </div>
+              <div class="col-md-4">
+                <label class="form-label" for="lastName">Last Name</label>
+                <input class="form-control" th:field="*{lastName}" th:errorClass="is-invalid">
+                <span class="invalid-feedback" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></span>
+              </div>              
+              <div class="col-md-6">
+                <label class="form-label" for="email">Email</label>
+                <input class="form-control" th:field="*{email}" th:errorClass="is-invalid">
+                <span class="invalid-feedback" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="phoneNumber">Phone</label>
+                <input class="form-control" th:field="*{phoneNumber}" th:errorClass="is-invalid">
+                <span class="invalid-feedback" th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></span>
+              </div>              
+              <div class="col-12">
+                <label class="form-label" for="residenceAddress">Residence Address</label>
+                <input class="form-control" th:field="*{residenceAddress}" th:errorClass="is-invalid">
+                <span class="invalid-feedback" th:if="${#fields.hasErrors('residenceAddress')}" th:errors="*{residenceAddress}"></span>
+              </div>
+              <div class="col-12">
+                <label class="form-label" for="actualAddress">Actual Address</label>
+                <input class="form-control" th:field="*{actualAddress}" th:errorClass="is-invalid">
+                <span class="invalid-feedback" th:if="${#fields.hasErrors('actualAddress')}" th:errors="*{actualAddress}"></span>
+              </div>
+              <div class="col-12">
+                <button class="btn btn-primary" type="submit">Save</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+</body>
+
+</html>

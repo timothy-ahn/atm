@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{admin/shared/layout.html}">
+
+<head>
+  <title>Customer Details</title>
+</head>
+
+<body>
+
+  <div layout:fragment="breadcrumb">
+    <li class="breadcrumb-item">
+      <a th:href="@{/admin}">Home</a>
+    </li>
+    <li class="breadcrumb-item">
+      <a th:href="@{/admin/customer}">Customers</a>
+    </li>
+    <li class="breadcrumb-item active">
+      <span>Create</span>
+    </li>
+  </div>
+
+  <div layout:fragment="content">
+    <div class="row">
+      <div class="col-7">
+        <div class="card mb-4">
+          <div class="card-header"><strong>Customer</strong></div>
+          <div class="card-body">
+            <form class="row g-3" method="post" th:acton="@{/admin/customer/create}" th:object="${customer}" id="createCustomerForm">
+              <div class="col-md-4">
+                <label class="form-label" for="firstName">First Name</label>
+                <input class="form-control" th:field="*{firstName}" th:errorClass="is-invalid">
+                <span class="invalid-feedback" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></span>
+              </div>
+              <div class="col-md-4">
+                <label class="form-label" for="middleName">Middle Name</label>
+                <input class="form-control" th:field="*{middleName}" th:errorClass="is-invalid">
+                <span class="invalid-feedback" th:if="${#fields.hasErrors('middleName')}" th:errors="*{middleName}"></span>
+              </div>
+              <div class="col-md-4">
+                <label class="form-label" for="lastName">Last Name</label>
+                <input class="form-control" th:field="*{lastName}" th:errorClass="is-invalid">
+                <span class="invalid-feedback" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></span>
+              </div>
+              <div class="col-md-4">
+                <label class="form-label" for="sex">Sex</label>
+                <select class="form-select" th:field="*{sex}" th:errorClass="is-invalid">
+                  <option th:each="sex : ${sexs}" th:value="${sex}" th:text="${sex}">Wireframe</option>
+                </select>
+                <span class="invalid-feedback" th:if="${#fields.hasErrors('sex')}" th:errors="*{sex}"></span>
+              </div>
+              <div class="col-md-4">
+                <label class="form-label" for="birthDate">Birthdate</label>
+                <input class="form-control" th:field="*{birthDate}" type="date" th:errorClass="is-invalid">
+                <span class="invalid-feedback" th:if="${#fields.hasErrors('birthDate')}" th:errors="*{birthDate}"></span>
+              </div>
+              <div class="col-md-4">
+                <label class="form-label" for="citizenship">Citizenship</label>
+                <input class="form-control" th:field="*{citizenship}" style="text-transform:uppercase" maxlength="30" th:errorClass="is-invalid">
+                <span class="invalid-feedback" th:if="${#fields.hasErrors('citizenship')}" th:errors="*{citizenship}"></span>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="email">Email</label>
+                <input class="form-control" th:field="*{email}" type="email" th:errorClass="is-invalid">
+                <span class="invalid-feedback" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="phoneNumber">Phone</label>
+                <div class="input-group mb-3">
+                  <span class="input-group-text">+7</span>
+                  <input class="form-control" th:field="*{phoneNumber}" pattern="^[0-9]{10}$" placeholder="7777777777" maxlength="10" th:errorClass="is-invalid">
+                </div>                
+                <span class="invalid-feedback" th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></span>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="docType">Doc Type</label>
+                <select class="form-select" th:field="*{docType}" th:errorClass="is-invalid">
+                  <option th:each="docType : ${docTypes}" th:value="${docType}" th:text="${docType}">Wireframe</option>
+                </select>
+                <span class="invalid-feedback" th:if="${#fields.hasErrors('docType')}" th:errors="*{docType}"></span>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="docNum">Doc Num.</label>
+                <input class="form-control" th:field="*{docNum}" th:errorClass="is-invalid">
+                <span class="invalid-feedback" th:if="${#fields.hasErrors('docNum')}" th:errors="*{docNum}"></span>
+              </div>
+              <div class="col-md-4">
+                <label class="form-label" for="docIssueDate">Doc Issue Date</label>
+                <input class="form-control" th:field="*{docIssueDate}" type="date" th:errorClass="is-invalid">
+                <span class="invalid-feedback" th:if="${#fields.hasErrors('docIssueDate')}" th:errors="*{docIssueDate}"></span>
+              </div>
+              <div class="col-md-4">
+                <label class="form-label" for="docExpiryDate">Doc Expiry Date</label>
+                <input class="form-control" th:field="*{docExpiryDate}" type="date" th:errorClass="is-invalid">
+                <span class="invalid-feedback" th:if="${#fields.hasErrors('docExpiryDate')}" th:errors="*{docExpiryDate}"></span>
+              </div>
+              <div class="col-md-4">
+                <label class="form-label" for="stateIsoCode">State ISO</label>
+                <input class="form-control" th:field="*{stateIsoCode}" th:errorClass="is-invalid" maxlength="3" placeholder="KAZ" style="text-transform:uppercase">
+                <span class="invalid-feedback" th:if="${#fields.hasErrors('stateIsoCode')}" th:errors="*{stateIsoCode}"></span>
+              </div>
+              <div class="col-12">
+                <label class="form-label" for="docIssuer">Doc Issuer</label>
+                <input class="form-control" th:field="*{docIssuer}" th:errorClass="is-invalid">
+                <span class="invalid-feedback" th:if="${#fields.hasErrors('docIssuer')}" th:errors="*{docIssuer}"></span>
+              </div>
+              <div class="col-12">
+                <label class="form-label" for="residenceAddress">Residence Address</label>
+                <input class="form-control" th:field="*{residenceAddress}" th:errorClass="is-invalid">
+                <span class="invalid-feedback" th:if="${#fields.hasErrors('residenceAddress')}" th:errors="*{residenceAddress}"></span>
+              </div>
+              <div class="col-12">
+                <label class="form-label" for="actualAddress">Actual Address</label>
+                <input class="form-control" th:field="*{actualAddress}" th:errorClass="is-invalid">
+                <span class="invalid-feedback" th:if="${#fields.hasErrors('actualAddress')}" th:errors="*{actualAddress}"></span>
+              </div>
+            </form>
+          </div>
+          <div class="card-footer">
+            <button class="btn btn-primary" type="submit" form="createCustomerForm">Create</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+</body>
+
+</html>
