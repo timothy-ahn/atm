@@ -96,6 +96,9 @@ public class Customer {
     @OneToMany(mappedBy = "customer", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Account> accounts = new ArrayList<>();
 
+    @OneToMany(mappedBy = "customer", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<Card> cards = new ArrayList<>();
+
     public enum DocumentType {
         PASSPORT,
         ID_CARD

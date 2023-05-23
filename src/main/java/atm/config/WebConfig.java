@@ -12,7 +12,7 @@ public class WebConfig implements WebMvcConfigurer {
     
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/").setViewName("terminal/index");        
+        //registry.addViewController("/").setViewName("terminal/index");        
     }
 
     @Bean

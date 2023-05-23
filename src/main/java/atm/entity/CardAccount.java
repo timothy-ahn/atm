@@ -1,5 +1,6 @@
 package atm.entity;
 
+
 import lombok.Data;
 
 @Data

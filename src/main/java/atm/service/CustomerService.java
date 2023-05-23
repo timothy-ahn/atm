@@ -98,6 +98,8 @@ public class CustomerService {
         } else {
             LOGGER.warn("Could not create a default EUR account for Customer with id" + customer.getId());
         }
+
+        //Card card = new Card();
     }
 
     public void updateCustomer(Customer customer) {
