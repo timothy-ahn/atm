@@ -34,7 +34,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Table(uniqueConstraints = 
 { 
-    @UniqueConstraint(name = "UniqueResident", columnNames = { "stateIsoCode", "docNum" }) 
+    @UniqueConstraint(name = "UniqueResident", columnNames = { "state_iso_code", "doc_num" })
 })
 public class Customer {
     @Id
@@ -49,7 +49,7 @@ public class Customer {
     @NotBlank
     private String citizenship;
     @NotBlank
-    @Column(length = 3)
+    @Column(name = "state_iso_code", length = 3)
     @Pattern(regexp = "^[A-Za-z]{3}$")
     private String stateIsoCode;
     @NotNull
@@ -78,7 +78,7 @@ public class Customer {
     @Column(length = 30)
     private DocumentType docType;
     @NotBlank
-    @Column(length = 30)
+    @Column(name = "doc_num", length = 30)
     private String docNum;
     @NotBlank
     @Size(min = 2, max = 100)

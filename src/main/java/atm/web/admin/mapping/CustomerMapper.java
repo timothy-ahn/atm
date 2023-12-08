@@ -14,7 +14,7 @@ import atm.web.admin.model.CustomerItemDTO;
 @Mapper(componentModel = "spring", injectionStrategy = InjectionStrategy.CONSTRUCTOR)
 public interface CustomerMapper {
 
-    @Mapping(target = "birthDate", dateFormat = "dd.MM.yyyy")
+    @Mapping(source = "birthDate", target = "birthDate", dateFormat = "dd.MM.yyyy")
     CustomerItemDTO toCustomerItemDto(Customer customer);
     List<CustomerItemDTO> toCustomerListDto(List<Customer> customers);
 
@@ -23,6 +23,7 @@ public interface CustomerMapper {
     @Mapping(target = "docExpiryDate", dateFormat = "dd.MM.yyyy")
     CustomerDetailsDTO toCustomerDetailsDto(Customer customer);
 
+    @Mapping(target = "cards", ignore = true)
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "accounts", ignore = true)
     @Mapping(target = "createdAt", ignore = true)

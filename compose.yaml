@@ -1,0 +1,23 @@
+services:
+  postgres:
+    container_name: postgres
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: endterm
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: Pass@word
+      PGDATA: /data/java-endterm
+    volumes:
+      - db:/data/java-endterm
+    ports:
+      - 5332:5432
+    networks:
+      - db
+    restart: unless-stopped
+
+networks:
+  db:
+    driver: bridge
+
+volumes:
+  db:
